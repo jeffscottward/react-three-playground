@@ -1,2 +1,2 @@
-# react-three-playground
-Testing out React Three Fiber stuff
+# modern-js-todo
+Quick example with useContext &amp; ES7
