@@ -1,19 +1,14 @@
 // REACT & NEXT
 import React from 'react'
-import Head from 'next/head'
 import Header from './Header'
-import VideoBG from './VideoBG'
+// import VideoBG from './VideoBG'
 
 const Layout = ({ pageTitle = 'LiquiDefi', children }) => (
   <>
-    <Head>
-      <title>{pageTitle}</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <VideoBG fade="0">
+    {/* <VideoBG fade="0"> */}
       <Header />
       <main role="main">{children}</main>
-      <style jsx global>{`
+      <style>{`
         // Defaults
         *,
         *:before,
@@ -90,12 +85,16 @@ const Layout = ({ pageTitle = 'LiquiDefi', children }) => (
           text-align: left;
         }
       `}</style>
-      <style jsx global>
+      <style>
         {`
           body {
             background: #333;
             color: white;
             overflow-x: hidden;
+            height: 100vh;
+          }
+          #root { 
+            height: 100vh;
           }
           main {
             height: 100%;
@@ -115,7 +114,7 @@ const Layout = ({ pageTitle = 'LiquiDefi', children }) => (
           }
         `}
       </style>
-    </VideoBG>
+    {/* </VideoBG> */}
   </>
 )
 

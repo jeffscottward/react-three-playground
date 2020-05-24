@@ -1,45 +1,46 @@
-import { useStateValue } from '../state/state'
-import getOnboard from '../utils/Onboarding'
-import addrShortener from '../utils/addrShortener'
+import React from "react";
+import { useStateValue } from "../state/state";
+import getOnboard from "../utils/Onboarding";
+import addrShortener from "../utils/addrShortener";
 
-const SignInArea = ({stretch, fs}) => {
-  const [{ dapp }, dispatch] = useStateValue()
+const SignInArea = ({ stretch, fs }) => {
+  const [{ dapp }, dispatch] = useStateValue();
 
   const onboard = getOnboard({
     address: (address) => {
       dispatch({
-        type: 'SET_ADDRESS',
+        type: "SET_ADDRESS",
         payload: address,
-      })
+      });
     },
     network: (network) => {
       dispatch({
-        type: 'SET_NETWORK',
+        type: "SET_NETWORK",
         payload: network,
-      })
+      });
     },
     balance: (balance) => {
       dispatch({
-        type: 'SET_BALANCE',
+        type: "SET_BALANCE",
         payload: balance,
-      })
+      });
     },
     wallet: (wallet) => {
       dispatch({
-        type: 'SET_WALLET',
+        type: "SET_WALLET",
         payload: wallet,
-      })
+      });
     },
-  })
+  });
 
   const handleSignInClick = async () => {
-    await onboard.walletSelect()
-    await onboard.walletCheck()
-  }
+    await onboard.walletSelect();
+    await onboard.walletCheck();
+  };
 
   return (
     <div>
-      {dapp.wallet.name === 'TEST' ? (
+      {dapp.wallet.name === "TEST" ? (
         <button onClick={handleSignInClick} onKeyUp={handleSignInClick}>
           Sign In
         </button>
@@ -69,37 +70,47 @@ const SignInArea = ({stretch, fs}) => {
                 <b>Balance:</b>
               </td>
               <td>
-                {dapp.balance &&
-                  String(web3.fromWei(dapp.balance, 'ether')).substring(0, 5)}{' '}
+                {dapp.web3 &&
+                  dapp.balance &&
+                  String(dapp.web3.fromWei(dapp.balance, "ether")).substring(
+                    0,
+                    5
+                  )}
                 ETH
               </td>
             </tr>
           </tbody>
         </table>
       )}
-      <style jsx>{`
+      <style>{`
         .wallet-row,
         .address-row,
         .network-row,
-        .balance-row { display: none; }
-        
-        .address-row { display: block; }
-        .address-row b{ display: none; }
-        
+        .balance-row {
+          display: none;
+        }
+
+        .address-row {
+          display: block;
+        }
+        .address-row b {
+          display: none;
+        }
+
         button {
           border-radius: 4px;
           border: none;
-          color:white;
+          color: white;
           cursor: pointer;
           padding: 5px 10px;
-          font-size: .8rem;
-          background-color: rgba(0,52,132,1.0);
-          width: ${stretch ? '100%' : 'auto' };
-          font-size: ${fs ? fs : 'inherit'}
+          font-size: 0.8rem;
+          background-color: rgba(0, 52, 132, 1);
+          width: ${stretch ? "100%" : "auto"};
+          font-size: ${fs ? fs : "inherit"};
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default SignInArea
+export default SignInArea;

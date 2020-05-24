@@ -1,9 +1,9 @@
-import dynamic from 'next/dynamic'
-const SignInArea = dynamic(() => import('./SignInArea'), { ssr: false })
+import React from 'react'
+import SignInArea from './SignInArea'
 
 const Header = () => {
   return (
-    <header role="header">
+    <header>
       <div className="header-row">
         <div className="brand">
           <a href="/">
@@ -15,7 +15,7 @@ const Header = () => {
         </div>
         <SignInArea />
       </div>
-      <style jsx>{`
+      <style>{`
         header {
           padding: 15px 10px 10px 10px;
           background: rgba(19,27,48,1.0);
